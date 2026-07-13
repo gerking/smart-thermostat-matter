@@ -1,0 +1,26 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>smart-thermostat-matter</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!--
+        Deliberately kept free of external dependencies (e.g. a real JDBC driver) so the
+        project can be built and analyzed offline / without access to Maven Central using
+        `javac` or CodeQL. A real deployment would need, e.g., a MySQL JDBC driver added.
+    -->
+
+    <build>
+        <finalName>smart-thermostat-matter</finalName>
+    </build>
+</project>
