@@ -1,0 +1,31 @@
+[2026-07-14 19:40:59] [javac-extractor-7836] Starting extraction for:
+                                             sun.java.command=com.semmle.extractor.java.JavaExtractor --jdk-version 21 --javac-args @@@C:\Users\chris\eclipse-workspace\smart-thermostat-matter\db\log\ext\javac.args
+                                             user.dir=C:\Users\chris\eclipse-workspace\smart-thermostat-matter
+[2026-07-14 19:41:00] [javac-extractor-7836] Compilation name C:/Users/chris/eclipse-workspace/smart-thermostat-matter/db/trap/java/diagnostics/diagnostic.trap.gz
+[2026-07-14 19:41:00] [javac-extractor-7836] [WARN] Appending source destination directory C:\Users\chris\eclipse-workspace\smart-thermostat-matter\target\generated-sources\annotations to sourcepath
+[2026-07-14 19:41:01] [javac-extractor-7836] Annotation processor class 'lombok.launch.AnnotationProcessorHider$AnnotationProcessor' initialized.
+[2026-07-14 19:41:01] [javac-extractor-7836] Annotation processor class 'lombok.launch.AnnotationProcessorHider$ClaimingProcessor' initialized.
+[2026-07-14 19:41:01] [javac-extractor-7836] 14 files will be passed to the attrib/flow phase
+[2026-07-14 19:41:01] [javac-extractor-7836] Processing file C:\Users\chris\eclipse-workspace\smart-thermostat-matter\src\main\java\com\example\thermostat\ThermostatDevice.java
+[2026-07-14 19:41:07] [javac-extractor-7836] Processing module java.base
+[2026-07-14 19:41:08] [javac-extractor-7836] Processing file C:\Users\chris\eclipse-workspace\smart-thermostat-matter\src\main\java\com\example\thermostat\ThermostatMain.java
+[2026-07-14 19:41:08] [javac-extractor-7836] Processing file C:\Users\chris\eclipse-workspace\smart-thermostat-matter\src\main\java\com\example\thermostat\config\ConfigLoader.java
+[2026-07-14 19:41:08] [javac-extractor-7836] Processing file C:\Users\chris\eclipse-workspace\smart-thermostat-matter\src\main\java\com\example\thermostat\firmware\FirmwareUpdateService.java
+[2026-07-14 19:41:08] [javac-extractor-7836] Processing file C:\Users\chris\eclipse-workspace\smart-thermostat-matter\src\main\java\com\example\thermostat\matter\CommissioningCredentialVerifier.java
+[2026-07-14 19:41:09] [javac-extractor-7836] Processing file C:\Users\chris\eclipse-workspace\smart-thermostat-matter\src\main\java\com\example\thermostat\matter\ProvisionedSecretStore.java
+[2026-07-14 19:41:09] [javac-extractor-7836] Processing file C:\Users\chris\eclipse-workspace\smart-thermostat-matter\src\main\java\com\example\thermostat\matter\Credentials.java
+[2026-07-14 19:41:09] [javac-extractor-7836] Processing file C:\Users\chris\eclipse-workspace\smart-thermostat-matter\src\main\java\com\example\thermostat\matter\MatterCommissioning.java
+[2026-07-14 19:41:09] [javac-extractor-7836] Processing file C:\Users\chris\eclipse-workspace\smart-thermostat-matter\src\main\java\com\example\thermostat\persistence\DatabaseConfig.java
+[2026-07-14 19:41:09] [javac-extractor-7836] Processing file C:\Users\chris\eclipse-workspace\smart-thermostat-matter\src\main\java\com\example\thermostat\persistence\TemperatureHistoryRepository.java
+[2026-07-14 19:41:09] [javac-extractor-7836] Processing module java.sql
+[2026-07-14 19:41:09] [javac-extractor-7836] Processing module java.xml
+[2026-07-14 19:41:09] [javac-extractor-7836] Processing module java.logging
+[2026-07-14 19:41:09] [javac-extractor-7836] Processing file C:\Users\chris\eclipse-workspace\smart-thermostat-matter\src\main\java\com\example\thermostat\remote\CommandExecutor.java
+[2026-07-14 19:41:09] [javac-extractor-7836] Processing file C:\Users\chris\eclipse-workspace\smart-thermostat-matter\src\main\java\com\example\thermostat\remote\RemoteAccessService.java
+[2026-07-14 19:41:09] [javac-extractor-7836] Processing file C:\Users\chris\eclipse-workspace\smart-thermostat-matter\src\main\java\com\example\thermostat\thread\ThreadNetworkManager.java
+[2026-07-14 19:41:09] [javac-extractor-7836] Processing file C:\Users\chris\eclipse-workspace\smart-thermostat-matter\src\main\java\com\example\thermostat\util\CryptoUtil.java
+[2026-07-14 19:41:10] [javac-extractor-7836] Javac init time: 1,0s
+[2026-07-14 19:41:10] [javac-extractor-7836] Javac attr time: 0,1s
+[2026-07-14 19:41:10] [javac-extractor-7836] Extractor time: 8,7s
+[2026-07-14 19:41:10] [javac-extractor-7836] Other time: 0,2s
+[2026-07-14 19:41:10] [javac-extractor-7836] Total time: 10,0s

@@ -1,3 +1,0 @@
-[2026-07-14 19:27:24] [javac-output-5576] Warnung: [options] Systemmodulpfad ist nicht zusammen mit -source 17 festgelegt
-[2026-07-14 19:27:24] [javac-output-5576]   Wenn Sie den Speicherort der Systemmodule nicht festlegen, kann dies zu Klassendateien führen, die auf JDK 17 nicht ausgeführt werden können
-[2026-07-14 19:27:24] [javac-output-5576]     --release 17 wird anstelle von -source 17 -target 17 empfohlen, weil dadurch der Speicherort der Systemmodule automatisch festgelegt wird
