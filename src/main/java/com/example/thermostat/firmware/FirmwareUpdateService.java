@@ -10,9 +10,6 @@ public class FirmwareUpdateService {
 
     /**
      * Stores an uploaded firmware image under the file name supplied by the client.
-     *
-     * VULN (CWE-22, Path Traversal): fileName is concatenated with the base directory
-     * without validation. A value like "../../etc/cron.d/evil" would write outside FIRMWARE_DIR.
      */
     public void storeUploadedFirmware(String fileName, InputStream data) throws Exception {
         File target = new File(FIRMWARE_DIR + fileName);
@@ -23,9 +20,6 @@ public class FirmwareUpdateService {
 
     /**
      * Extracts a previously uploaded firmware archive.
-     *
-     * VULN (CWE-78, OS Command Injection): archiveName is inserted directly into a shell
-     * call without escaping or validation.
      */
     public void extractFirmwareArchive(String archiveName) throws Exception {
         String command = "tar -xzf " + FIRMWARE_DIR + archiveName + " -C " + FIRMWARE_DIR;

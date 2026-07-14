@@ -15,10 +15,6 @@ public class RemoteAccessService {
 
     /**
      * Builds an SSLContext for the cloud connection.
-     *
-     * VULN (CWE-295, Improper Certificate Validation): certificate validation is completely
-     * bypassed by a TrustManager that trusts everything (a classic "trust-all" trap, e.g.
-     * added for debugging and never removed).
      */
     public SSLContext createCloudSslContext() throws Exception {
         TrustManager[] trustAllCerts = new TrustManager[] {
@@ -28,11 +24,9 @@ public class RemoteAccessService {
                 }
 
                 public void checkClientTrusted(X509Certificate[] certs, String authType) {
-                    // no-op: accepts any client certificate
                 }
 
                 public void checkServerTrusted(X509Certificate[] certs, String authType) {
-                    // no-op: accepts any server certificate
                 }
             }
         };
@@ -43,10 +37,6 @@ public class RemoteAccessService {
 
     /**
      * Receives a command object sent by the cloud backend.
-     *
-     * VULN (CWE-502, Deserialization of Untrusted Data): data coming from a network
-     * connection is deserialized directly with ObjectInputStream, without any validation
-     * or class whitelisting.
      */
     public Object receiveRemoteCommand(InputStream networkStream) throws Exception {
         try (ObjectInputStream ois = new ObjectInputStream(networkStream)) {

@@ -18,9 +18,6 @@ public class TemperatureHistoryRepository {
 
     /**
      * Prints the temperature history for a given device.
-     *
-     * VULN (CWE-89, SQL Injection): deviceId (e.g. coming from a cloud app or API request)
-     * is concatenated into the SQL query without any sanitization.
      */
     public void printHistoryForDevice(String deviceId) throws SQLException {
         try (Connection conn = connect(); Statement stmt = conn.createStatement()) {

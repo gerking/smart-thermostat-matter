@@ -7,13 +7,9 @@ import java.util.Random;
  */
 public class MatterCommissioning {
 
-    // VULN (CWE-798, Hardcoded Credentials): the Matter setup passcode is hardcoded in source
-    // instead of being generated individually per device (e.g. printed on a label/QR code).
     private static final String DEFAULT_SETUP_PASSCODE = "20202021";
     private static final String FABRIC_ADMIN_TOKEN = "matter-fabric-admin-9f3a1";
 
-    // VULN (CWE-338, Use of Insufficiently Random Values): java.util.Random is not
-    // cryptographically secure and unsuitable for security-relevant IDs (SecureRandom would be correct).
     private final Random random = new Random();
 
     public MatterCommissionResult commission(String deviceId) {
