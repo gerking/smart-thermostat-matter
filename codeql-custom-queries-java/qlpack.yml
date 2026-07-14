@@ -1,0 +1,5 @@
+name: demo/thermostat-custom-queries
+version: 0.0.1
+description: Targeted demo queries for the vulnerabilities deliberately built into the smart thermostat project
+dependencies:
+  codeql/java-all: "*"

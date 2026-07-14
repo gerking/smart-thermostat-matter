@@ -1,7 +1,0 @@
----
-library: false
-warnOnImplicitThis: false
-name: getting-started/codeql-custom-queries-java-java
-version: 1.0.0
-dependencies:
-  codeql/java-all: ^9.2.0

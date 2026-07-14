@@ -1,0 +1,13 @@
+---
+sourceLocationPrefix: C:\Users\chris\eclipse-workspace\smart-thermostat-matter
+baselineLinesOfCode: 269
+unicodeNewlines: false
+columnKind: utf16
+primaryLanguage: java
+creationMetadata:
+  sha: 5a46a1b03d097c452d704d4729510537368f474e
+  cliVersion: 2.26.0
+  creationTime: 2026-07-14T12:06:32.518265300Z
+overlayBaseDatabase: false
+overlayDatabase: false
+finalised: true

@@ -1,0 +1,16 @@
+com\example\thermostat\firmware\FirmwareUpdateService.class
+com\example\thermostat\matter\Credentials.class
+com\example\thermostat\remote\CommandExecutor.class
+com\example\thermostat\ThermostatDevice.class
+com\example\thermostat\remote\RemoteAccessService.class
+com\example\thermostat\persistence\DatabaseConfig.class
+com\example\thermostat\ThermostatMain.class
+com\example\thermostat\matter\MatterCommissioning.class
+com\example\thermostat\matter\ProvisionedSecretStore.class
+com\example\thermostat\persistence\TemperatureHistoryRepository.class
+com\example\thermostat\remote\RemoteAccessService$1.class
+com\example\thermostat\util\CryptoUtil.class
+com\example\thermostat\matter\CommissioningCredentialVerifier.class
+com\example\thermostat\matter\MatterCommissioning$MatterCommissionResult.class
+com\example\thermostat\config\ConfigLoader.class
+com\example\thermostat\thread\ThreadNetworkManager.class
