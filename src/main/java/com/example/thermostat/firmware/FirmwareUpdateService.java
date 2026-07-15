@@ -11,11 +11,18 @@ public class FirmwareUpdateService {
     /**
      * Stores an uploaded firmware image under the file name supplied by the client.
      *
-     * VULN (CWE-22, Path Traversal): fileName is concatenated with the base directory
-     * without validation. A value like "../../etc/cron.d/evil" would write outside FIRMWARE_DIR.
+     * FIX (was CWE-22, Path Traversal): the target path is resolved to its canonical
+     * form (resolving ".." segments and symlinks, not just textually) and then checked
+     * to still lie within FIRMWARE_DIR. Unlike a name-pattern allow-list, this can't be
+     * bypassed via symlink tricks or unexpected path encodings, since the check happens
+     * on the fully resolved path.
      */
     public void storeUploadedFirmware(String fileName, InputStream data) throws Exception {
-        File target = new File(FIRMWARE_DIR + fileName);
+        File target = new File(FIRMWARE_DIR + fileName).getCanonicalFile();
+        String allowedRoot = new File(FIRMWARE_DIR).getCanonicalPath() + File.separator;
+        if (!target.getPath().startsWith(allowedRoot)) {
+            throw new IllegalArgumentException("Invalid file name: " + fileName);
+        }
         try (FileOutputStream out = new FileOutputStream(target)) {
             data.transferTo(out);
         }
@@ -24,11 +31,12 @@ public class FirmwareUpdateService {
     /**
      * Extracts a previously uploaded firmware archive.
      *
-     * VULN (CWE-78, OS Command Injection): archiveName is inserted directly into a shell
-     * call without escaping or validation.
+     * FIX (was CWE-78, OS Command Injection): No shell wrapper anymore
+     * ("/bin/sh -c" is gone). ProcessBuilder passes archiveName as its own,
+     * atomic argv element to "tar" - there is no shell interpreter left that
+     * could read metacharacters in it as command separators.
      */
     public void extractFirmwareArchive(String archiveName) throws Exception {
-        String command = "tar -xzf " + FIRMWARE_DIR + archiveName + " -C " + FIRMWARE_DIR;
-        Runtime.getRuntime().exec(new String[] { "/bin/sh", "-c", command });
+        new ProcessBuilder("tar", "-xzf", FIRMWARE_DIR + archiveName, "-C", FIRMWARE_DIR).start();
     }
 }

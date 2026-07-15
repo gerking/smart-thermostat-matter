@@ -4,6 +4,7 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 import java.io.InputStream;
+import java.io.ObjectInputFilter;
 import java.io.ObjectInputStream;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
@@ -16,40 +17,29 @@ public class RemoteAccessService {
     /**
      * Builds an SSLContext for the cloud connection.
      *
-     * VULN (CWE-295, Improper Certificate Validation): certificate validation is completely
-     * bypassed by a TrustManager that trusts everything (a classic "trust-all" trap, e.g.
-     * added for debugging and never removed).
+     * FIX (was CWE-295, Improper Certificate Validation): the custom "trust-all"
+     * TrustManager was removed. {@code null} for the trust managers tells the JVM to
+     * use its built-in default trust manager (system trust store).
      */
     public SSLContext createCloudSslContext() throws Exception {
-        TrustManager[] trustAllCerts = new TrustManager[] {
-            new X509TrustManager() {
-                public X509Certificate[] getAcceptedIssuers() {
-                    return new X509Certificate[0];
-                }
-
-                public void checkClientTrusted(X509Certificate[] certs, String authType) {
-                    // no-op: accepts any client certificate
-                }
-
-                public void checkServerTrusted(X509Certificate[] certs, String authType) {
-                    // no-op: accepts any server certificate
-                }
-            }
-        };
         SSLContext sc = SSLContext.getInstance("TLS");
-        sc.init(null, trustAllCerts, new SecureRandom());
+        sc.init(null, null, new SecureRandom());
         return sc;
     }
 
     /**
      * Receives a command object sent by the cloud backend.
      *
-     * VULN (CWE-502, Deserialization of Untrusted Data): data coming from a network
-     * connection is deserialized directly with ObjectInputStream, without any validation
-     * or class whitelisting.
+     * FIX (was CWE-502, Deserialization of Untrusted Data): a JDK ObjectInputFilter
+     * (JEP 290) now restricts deserialization: max nesting depth 5, max array length
+     * 100, java.lang.String explicitly allowed, everything else rejected ("!*") before
+     * readObject() would instantiate it. In a real protocol, the allow-list would name
+     * the concrete command/DTO classes instead of String.
      */
     public Object receiveRemoteCommand(InputStream networkStream) throws Exception {
         try (ObjectInputStream ois = new ObjectInputStream(networkStream)) {
+            ois.setObjectInputFilter(
+                    ObjectInputFilter.Config.createFilter("maxdepth=5;maxarray=100;java.lang.String;!*"));
             return ois.readObject();
         }
     }

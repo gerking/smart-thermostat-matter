@@ -8,7 +8,6 @@ com\example\thermostat\ThermostatMain.class
 com\example\thermostat\matter\MatterCommissioning.class
 com\example\thermostat\matter\ProvisionedSecretStore.class
 com\example\thermostat\persistence\TemperatureHistoryRepository.class
-com\example\thermostat\remote\RemoteAccessService$1.class
 com\example\thermostat\util\CryptoUtil.class
 com\example\thermostat\matter\CommissioningCredentialVerifier.class
 com\example\thermostat\matter\MatterCommissioning$MatterCommissionResult.class

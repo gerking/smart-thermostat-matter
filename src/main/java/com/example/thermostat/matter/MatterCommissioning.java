@@ -1,5 +1,6 @@
 package com.example.thermostat.matter;
 
+import java.security.SecureRandom;
 import java.util.Random;
 
 /**
@@ -7,20 +8,22 @@ import java.util.Random;
  */
 public class MatterCommissioning {
 
-    // VULN (CWE-798, Hardcoded Credentials): the Matter setup passcode is hardcoded in source
-    // instead of being generated individually per device (e.g. printed on a label/QR code).
-    private static final String DEFAULT_SETUP_PASSCODE = "20202021";
-    private static final String FABRIC_ADMIN_TOKEN = "matter-fabric-admin-9f3a1";
+    // FIX (was CWE-798, Hardcoded Credentials): values now come from environment
+    // variables instead of being literals in source.
+    private static final String DEFAULT_SETUP_PASSCODE = System.getenv("MATTER_SETUP_PASSCODE");
+    private static final String FABRIC_ADMIN_TOKEN = System.getenv("MATTER_FABRIC_ADMIN_TOKEN");
 
-    // VULN (CWE-338, Use of Insufficiently Random Values): java.util.Random is not
-    // cryptographically secure and unsuitable for security-relevant IDs (SecureRandom would be correct).
-    private final Random random = new Random();
+    // FIX (was CWE-338, Use of Insufficiently Random Values): SecureRandom instead of
+    // Random. Declared type stays Random (supertype), so nothing below needs to change.
+    private final Random random = new SecureRandom();
 
     public MatterCommissionResult commission(String deviceId) {
         int discriminator = 1000 + random.nextInt(4096);
         long nodeId = Math.abs(random.nextLong());
 
-        System.out.println("Commissioning device " + deviceId + " with passcode " + DEFAULT_SETUP_PASSCODE);
+        // FIX (was CWE-532, Insertion of Sensitive Information into Log File): the
+        // passcode is no longer included in the log line.
+        System.out.println("Commissioning device " + deviceId + " started.");
         return new MatterCommissionResult(nodeId, discriminator, FABRIC_ADMIN_TOKEN);
     }
 
