@@ -19,7 +19,10 @@
 
 import java
 
-from ClassInstanceExpr cie
-where cie.getConstructedType().hasQualifiedName("java.util", "Random")
-select cie,
-  "Uses java.util.Random; if the generated value is security-relevant (ID, token, discriminator, session), java.security.SecureRandom should be used instead."
+from FieldDeclaration fd, ClassInstanceExpr cie
+where fd.getAField().getInitializer() = cie 
+  and cie.getType().getName() = "Random" 
+  and cie.getType().getCompilationUnit().getPackage().getName() = 	"java.util" 
+select fd,
+  "Uses java.util.Random; if the generated value is security-relevant, java.security.SecureRandom should be used instead."
+
